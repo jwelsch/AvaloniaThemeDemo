@@ -17,7 +17,7 @@
     <converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
   </Window.Resources>
   <DockPanel>
-    <StackPanel DockPanel.Dock="Top">
+    <StackPanel DockPanel.Dock="Top" Margin="0,5,0,5">
       <StackPanel Orientation="Horizontal">
         <Label>Current Application Theme: </Label>
         <Label Content="{Binding CurrentThemeName}"/>
@@ -54,7 +54,7 @@
     >
       <DataGrid.Columns>
         <DataGridTextColumn Header="Key" Width="500" Binding="{Binding Name}"/>
-        <DataGridTextColumn Header="Hex" Width="100" Binding="{Binding Color, Converter={StaticResource ColorToHexStringConverter}}"/>
+        <DataGridTextColumn Header="Hex" Width="130" Binding="{Binding Color, Converter={StaticResource ColorToHexStringConverter}}"/>
         <DataGridTemplateColumn Width="100" Header="Color">
           <DataTemplate>
             <Border BorderBrush="Black" BorderThickness="1" Margin="1">

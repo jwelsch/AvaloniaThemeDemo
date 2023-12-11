@@ -9,7 +9,18 @@ namespace AvaloniaThemeDemo.Converters
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            return value is Color color ? $"#{color.R:X2}{color.G:X2}{color.B:X2}" : null;
+            if (value is null
+                || value is not Color color)
+            {
+                return null;
+            }
+
+            if (color.A == 0)
+            {
+                return "Transparent";
+            }
+
+            return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
