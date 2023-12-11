@@ -24,8 +24,8 @@
       </StackPanel>
       <Rectangle Height="2" Fill="DarkGray" Margin="0,5,0,5"/>
 
-      <StackPanel Orientation="Horizontal">
-        <Label>Theme: </Label>
+      <DockPanel>
+        <Label VerticalAlignment="Center">Theme: </Label>
         <ComboBox
           Width="200"
           ItemsSource="{Binding Themes}"
@@ -37,7 +37,11 @@
             </DataTemplate>
           </ComboBox.ItemTemplate>
         </ComboBox>
-      </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+          <Label VerticalAlignment="Center">Search: </Label>
+          <TextBox Width="300" Text="{Binding SearchPattern}" Margin="0,0,5,0"></TextBox>
+        </StackPanel>
+      </DockPanel>
     </StackPanel>
     
     <DataGrid

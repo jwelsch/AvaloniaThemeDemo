@@ -6,12 +6,15 @@ using AvaloniaThemeDemo.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO.Enumeration;
 using System.Linq;
 
 namespace AvaloniaThemeDemo.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
+        private List<ThemeColor> _allThemeColors = new();
+
         [ObservableProperty]
         private List<ThemeInfo> _themes = new();
 
@@ -23,6 +26,9 @@ namespace AvaloniaThemeDemo.ViewModels
 
         [ObservableProperty]
         private string? _currentThemeName;
+
+        [ObservableProperty]
+        private string? _searchPattern;
 
         public MainWindowViewModel()
         {
@@ -67,6 +73,10 @@ namespace AvaloniaThemeDemo.ViewModels
             if (e.PropertyName == nameof(ThemeNameSelectedIndex))
             {
                 LoadThemeResources(Themes[ThemeNameSelectedIndex].ThemeVariantProvider);
+            }
+            else if (e.PropertyName == nameof(SearchPattern))
+            {
+                ThemeColors = ApplySearchPattern(SearchPattern, _allThemeColors);
             }
         }
 
@@ -113,14 +123,28 @@ namespace AvaloniaThemeDemo.ViewModels
                     continue;
                 }
 
-
                 var name = kvp.Key.ToString() ?? "<null>";
                 var hexValue = $"#{valueColor.R:X2}{valueColor.G:X2}{valueColor.B:X2}";
                 var themeColor = new ThemeColor(name, valueColor);
+
+                //System.Diagnostics.Trace.WriteLine($"Hex value: {hexValue}");
+
                 themeColors.Add(themeColor);
             }
 
-            ThemeColors = themeColors.OrderBy(i => i.Name).ToList();
+            _allThemeColors = themeColors.OrderBy(i => i.Name).ToList();
+
+            ThemeColors = ApplySearchPattern(SearchPattern, _allThemeColors);
+        }
+
+        private static List<ThemeColor> ApplySearchPattern(string? searchPattern, List<ThemeColor> allThemeColors)
+        {
+            if (string.IsNullOrEmpty(searchPattern))
+            {
+                return allThemeColors;
+            }
+
+            return allThemeColors.Where(i => FileSystemName.MatchesSimpleExpression($"*{searchPattern}*", i.Name, true)).ToList();
         }
     }
 }
