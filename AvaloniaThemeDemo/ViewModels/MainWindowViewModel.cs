@@ -25,7 +25,7 @@ namespace AvaloniaThemeDemo.ViewModels
         private List<ThemeColor> _themeColors = new();
 
         [ObservableProperty]
-        private string? _currentThemeName;
+        private string? _currentThemeVariantName;
 
         [ObservableProperty]
         private string? _searchPattern;
@@ -49,7 +49,7 @@ namespace AvaloniaThemeDemo.ViewModels
                 LoadThemeResources(Themes[ThemeNameSelectedIndex]);
             }
 
-            CurrentThemeName = Application.Current.ActualThemeVariant.ToString();
+            CurrentThemeVariantName = Application.Current.ActualThemeVariant.ToString();
         }
 
         private void MainWindowViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
