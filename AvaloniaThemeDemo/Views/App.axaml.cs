@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using AvaloniaThemeDemo.Services;
 using AvaloniaThemeDemo.ViewModels;
 
 namespace AvaloniaThemeDemo.Views
@@ -17,7 +18,7 @@ namespace AvaloniaThemeDemo.Views
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new MainWindow();
-                desktop.MainWindow.DataContext = new MainWindowViewModel();
+                desktop.MainWindow.DataContext = new MainWindowViewModel(new ThemeResourceProvider());
             }
 
             base.OnFrameworkInitializationCompleted();

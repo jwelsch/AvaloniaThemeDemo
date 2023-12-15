@@ -50,10 +50,9 @@
       CanUserResizeColumns="True"
       CanUserSortColumns="False"
       IsReadOnly="True"
-      
     >
       <DataGrid.Columns>
-        <DataGridTextColumn Header="Key" Width="500" Binding="{Binding Name}"/>
+        <DataGridTextColumn Header="Key" Width="500" Binding="{Binding Key}"/>
         <DataGridTextColumn Header="Hex" Width="130" Binding="{Binding Color, Converter={StaticResource ColorToHexStringConverter}}"/>
         <DataGridTemplateColumn Width="100" Header="Color">
           <DataTemplate>
@@ -64,20 +63,6 @@
         </DataGridTemplateColumn>
       </DataGrid.Columns>
     </DataGrid>
-
-    <!--<ListBox ItemsSource="{Binding ThemeColors}" Margin="5" ScrollViewer.VerticalScrollBarVisibility="Visible">
-      <ListBox.ItemTemplate>
-        <DataTemplate DataType="models:ThemeColor">
-          <StackPanel Orientation="Horizontal">
-            <TextBlock Width="350" Text="{Binding Name}" />
-            <TextBlock Width="100" Text="{Binding Color, Converter={StaticResource ColorToHexStringConverter}}" />
-            <Border BorderBrush="Black" BorderThickness="1" Margin="1">
-              <Rectangle Width="80" Fill="{Binding Color, Converter={StaticResource ColorToSolidColorBrushConverter}}" />
-            </Border>
-          </StackPanel>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>-->
 
   </DockPanel>
 </Window>
