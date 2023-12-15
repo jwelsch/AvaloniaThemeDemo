@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaThemeDemo", "AvaloniaThemeDemo\AvaloniaThemeDemo.csproj", "{6555AAD0-8629-409D-8B76-730318E14BC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaThemeDemo", "src\AvaloniaThemeDemo\AvaloniaThemeDemo.csproj", "{6555AAD0-8629-409D-8B76-730318E14BC4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E6B2E63D-C177-4B65-B2A2-4C850C5918EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6555AAD0-8629-409D-8B76-730318E14BC4} = {E6B2E63D-C177-4B65-B2A2-4C850C5918EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA2EB39E-D00B-4939-A1FB-8247A9147909}
