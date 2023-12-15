@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Styling;
 using AvaloniaThemeDemo.Models;
+using AvaloniaThemeDemo.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -132,6 +133,17 @@ namespace AvaloniaThemeDemo.Services
                     {
                         colorList.AddRange(resourceColors);
                     }
+                }
+                else if (type.FullName == "Avalonia.Themes.Fluent.Accents.SystemAccentColors")
+                {
+                    var systemAccentColorsAccessor = new SystemAccentColorsAccessor(kvp);
+                    colorList.Add(new ThemeColor(themeName, themeVariantName, nameof(systemAccentColorsAccessor.SystemAccentColor), systemAccentColorsAccessor!.SystemAccentColor!.Value));
+                    colorList.Add(new ThemeColor(themeName, themeVariantName, nameof(systemAccentColorsAccessor.SystemAccentColorDark1), systemAccentColorsAccessor!.SystemAccentColorDark1!.Value));
+                    colorList.Add(new ThemeColor(themeName, themeVariantName, nameof(systemAccentColorsAccessor.SystemAccentColorDark2), systemAccentColorsAccessor!.SystemAccentColorDark2!.Value));
+                    colorList.Add(new ThemeColor(themeName, themeVariantName, nameof(systemAccentColorsAccessor.SystemAccentColorDark3), systemAccentColorsAccessor!.SystemAccentColorDark3!.Value));
+                    colorList.Add(new ThemeColor(themeName, themeVariantName, nameof(systemAccentColorsAccessor.SystemAccentColorLight1), systemAccentColorsAccessor!.SystemAccentColorLight1!.Value));
+                    colorList.Add(new ThemeColor(themeName, themeVariantName, nameof(systemAccentColorsAccessor.SystemAccentColorLight2), systemAccentColorsAccessor!.SystemAccentColorLight2!.Value));
+                    colorList.Add(new ThemeColor(themeName, themeVariantName, nameof(systemAccentColorsAccessor.SystemAccentColorLight3), systemAccentColorsAccessor!.SystemAccentColorLight3!.Value));
                 }
             }
 
