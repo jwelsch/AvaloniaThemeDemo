@@ -15,12 +15,7 @@ namespace AvaloniaThemeDemo.Converters
                 return null;
             }
 
-            if (color.A == 0)
-            {
-                return "Transparent";
-            }
-
-            return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+            return $"#{color.R:X2}{color.G:X2}{color.B:X2}{color.A:X2}";
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
