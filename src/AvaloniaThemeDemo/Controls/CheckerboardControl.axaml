@@ -1,0 +1,35 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:AvaloniaThemeDemo.Controls">
+  <Design.PreviewWith>
+    <controls:CheckerboardControl Rows="8" Columns="8" />
+  </Design.PreviewWith>
+
+  <Style Selector="controls|CheckerboardControl">
+    <!-- Set Defaults -->
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ItemsControl x:Name="PART_CheckerboardPresenter"
+                      x:DataType="controls:CheckerboardControl"
+                      ItemsSource="{TemplateBinding Cells}"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Width="{TemplateBinding Width}"
+                      Height="{TemplateBinding Height}">
+          <!--Set the DataTemplate-->
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="controls:CheckerboardCell">
+              <Rectangle Fill="{Binding Fill}"/>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <UniformGrid x:Name="_uniformGrid" Columns="{TemplateBinding Columns}" Rows="{TemplateBinding Rows}" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+        </ItemsControl>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>

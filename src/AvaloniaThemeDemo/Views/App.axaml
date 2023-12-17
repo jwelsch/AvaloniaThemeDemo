@@ -8,5 +8,6 @@
     <FluentTheme />
     <!--<SimpleTheme/>-->
     <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+    <StyleInclude Source="/Controls/CheckerboardControl.axaml" />
   </Application.Styles>
 </Application>

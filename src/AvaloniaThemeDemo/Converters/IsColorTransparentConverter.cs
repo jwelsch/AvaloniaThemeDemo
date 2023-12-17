@@ -5,11 +5,17 @@ using System.Globalization;
 
 namespace AvaloniaThemeDemo.Converters
 {
-    public class ColorToSolidColorBrushConverter : IValueConverter
+    public class IsColorTransparentConverter : IValueConverter
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            return value is not null && value is Color color ? new SolidColorBrush(color) : null;
+            if (value is null
+                || value is not Color color)
+            {
+                return null;
+            }
+
+            return color.A == 0;
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

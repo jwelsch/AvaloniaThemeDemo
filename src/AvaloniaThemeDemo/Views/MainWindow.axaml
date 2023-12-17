@@ -5,6 +5,7 @@
         xmlns:vm="using:AvaloniaThemeDemo.ViewModels"
         xmlns:models="using:AvaloniaThemeDemo.Models"
         xmlns:converters="using:AvaloniaThemeDemo.Converters"
+        xmlns:controls="using:AvaloniaThemeDemo.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
         x:Class="AvaloniaThemeDemo.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -15,6 +16,8 @@
   <Window.Resources>
     <converters:ColorToHexStringConverter x:Key="ColorToHexStringConverter" />
     <converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
+    <converters:IsColorTransparentConverter x:Key="IsColorTransparentConverter" />
+    <converters:IsColorOpaqueConverter x:Key="IsColorOpaqueConverter" />
   </Window.Resources>
   <DockPanel>
     <StackPanel DockPanel.Dock="Top" Margin="0,5,0,5">
@@ -43,7 +46,7 @@
         </StackPanel>
       </DockPanel>
     </StackPanel>
-    
+
     <DataGrid
       ItemsSource="{Binding ThemeColors}"
       Margin="5"
@@ -57,7 +60,18 @@
         <DataGridTemplateColumn Width="100" Header="Color">
           <DataTemplate>
             <Border BorderBrush="Black" BorderThickness="1" Margin="1">
-              <Rectangle Fill="{Binding Color, Converter={StaticResource ColorToSolidColorBrushConverter}}" />
+              <Panel>
+                <Rectangle
+                  IsVisible="{Binding Color, Converter={StaticResource IsColorOpaqueConverter}}"
+                  Fill="{Binding Color, Converter={StaticResource ColorToSolidColorBrushConverter}}"
+                />
+                <controls:CheckerboardControl
+                  IsVisible="{Binding Color, Converter={StaticResource IsColorTransparentConverter}}"
+                  Columns="21" Rows="7"
+                  FirstColor="DimGray" SecondColor="LightGray"
+                  Width="96" Height="33"
+                />
+              </Panel>
             </Border>
           </DataTemplate>
         </DataGridTemplateColumn>

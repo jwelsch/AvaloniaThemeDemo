@@ -58,8 +58,26 @@ namespace AvaloniaThemeDemo.Services
 
                     var themeName = styleType.Name.Replace("Theme", "");
 
-                    foreach (var resource in theStyle.Resources)
+                    foreach (var kvp in theStyle.Resources)
                     {
+                        if (kvp.Key != null)
+                        {
+                            var value = theStyle.Resources[kvp.Key];
+
+                            if (value is Color color)
+                            {
+                                colorList.Add(new ThemeColor(themeName, null, kvp.Key.ToString() ?? "", color));
+
+                                continue;
+                            }
+                            else if (value is SolidColorBrush solidBrush)
+                            {
+                                colorList.Add(new ThemeColor(themeName, null, kvp.Key.ToString() ?? "", solidBrush.Color));
+
+                                continue;
+                            }
+                        }
+
                         var resourceColors = FindResourceDictionaryColors(themeName, null, theStyle.Resources);
 
                         if (resourceColors != null && resourceColors.Count > 0)
